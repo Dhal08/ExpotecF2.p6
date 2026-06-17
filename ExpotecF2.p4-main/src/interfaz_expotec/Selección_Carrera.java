@@ -5,16 +5,13 @@
  */
 package interfaz_expotec;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
@@ -25,6 +22,7 @@ public class Selección_Carrera extends javax.swing.JFrame {
 
     private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JPanel panelCarreras;
+    private javax.swing.JButton btnSeleccionarCarrera;
     private Map<String, String[]> datosCarreras;
 
     private final Color GRIS_CELDA = new Color(215, 215, 215);
@@ -76,6 +74,7 @@ public class Selección_Carrera extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        SeleccionarCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,6 +169,21 @@ public class Selección_Carrera extends javax.swing.JFrame {
         jLabel11.setText("Filtrar por Área de estudio:");
         jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
+        SeleccionarCarrera.setBackground(new java.awt.Color(255, 107, 26));
+        SeleccionarCarrera.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        SeleccionarCarrera.setForeground(new java.awt.Color(255, 255, 255));
+        SeleccionarCarrera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz_expotec/Recursos/flecha-correcta.png"))); // NOI18N
+        SeleccionarCarrera.setText("Seleccionar Carrera");
+        SeleccionarCarrera.setBorder(null);
+        SeleccionarCarrera.setBorderPainted(false);
+        SeleccionarCarrera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SeleccionarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionarCarreraActionPerformed(evt);
+            }
+        });
+        jPanel7.add(SeleccionarCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 160, 50));
+
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 106, 940, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,6 +199,10 @@ public class Selección_Carrera extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SeleccionarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarCarreraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SeleccionarCarreraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,6 +242,25 @@ public class Selección_Carrera extends javax.swing.JFrame {
     private void configurarComponentesDinamicos() {
         jPanel7.setLayout(null);
 
+        btnSeleccionarCarrera = new javax.swing.JButton("Seleccionar carrera");
+
+        btnSeleccionarCarrera.setFont(new Font("Arial", Font.BOLD, 16));
+        btnSeleccionarCarrera.setBackground(new Color(54, 25, 60));
+        btnSeleccionarCarrera.setForeground(Color.WHITE);
+
+        btnSeleccionarCarrera.setFocusPainted(false);
+
+        btnSeleccionarCarrera.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                System.out.println("Carrera seleccionada");
+
+            }
+        });
+
+        jPanel7.add(btnSeleccionarCarrera);
+
         String[] categorias = {"Humanidades", "Económicas", "Ingenierías", "Salud", "Educación"};
         comboFiltro = new javax.swing.JComboBox<>(categorias);
         comboFiltro.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -233,7 +270,8 @@ public class Selección_Carrera extends javax.swing.JFrame {
 
         jPanel7.add(comboFiltro, 0);
 
-        panelCarreras = new javax.swing.JPanel(new GridLayout(1, 3, 10, 10));
+        panelCarreras = new javax.swing.JPanel();
+        panelCarreras.setLayout(null);
         panelCarreras.setBackground(new java.awt.Color(244, 239, 245));
 
         panelCarreras.setBounds(60, 265, 585, 130);
@@ -256,6 +294,7 @@ public class Selección_Carrera extends javax.swing.JFrame {
 
         jPanel7.add(comboFiltro);
         jPanel7.add(panelCarreras);
+        jPanel7.add(btnSeleccionarCarrera);
 
         jPanel7.revalidate();
         jPanel7.repaint();
@@ -309,7 +348,53 @@ public class Selección_Carrera extends javax.swing.JFrame {
 
         // Panel cuadrante de carreras
         if (panelCarreras != null) {
-            panelCarreras.setBounds(xInput, (int) (altoPanel * 0.62), anchoInput, (int) (altoPanel * 0.12)); // ← era 0.30
+
+            int panelY = (int) (altoPanel * 0.62);
+            int panelAlto = (int) (altoPanel * 0.18);
+
+            panelCarreras.setBounds(
+                    xInput,
+                    panelY,
+                    anchoInput,
+                    panelAlto
+            );
+
+            if (btnSeleccionarCarrera != null) {
+
+                btnSeleccionarCarrera.setBounds(
+                        535,
+                        (int) (altoPanel * 0.84), // posición vertical
+                        275,
+                        (int) (altoPanel * 0.10) // altura
+                );
+
+                btnSeleccionarCarrera.setFont(
+                        new Font(
+                                "SansSerif",
+                                Font.BOLD,
+                                (int) (altoPanel * 0.030)
+                        )
+                );
+            }
+
+            // Posiciones de labels
+            int espacio = 20;
+
+            int anchoLabel = (anchoInput - (espacio * 2)) / 3;
+
+            int altoLabel = panelAlto - 10;
+
+            for (int i = 0; i < panelCarreras.getComponentCount(); i++) {
+
+                java.awt.Component c = panelCarreras.getComponent(i);
+
+                c.setBounds(
+                        i * (anchoLabel + espacio), // x
+                        0, // y
+                        anchoLabel,
+                        60
+                );
+            }
         }
 
         jPanel7.revalidate();
@@ -335,10 +420,13 @@ public class Selección_Carrera extends javax.swing.JFrame {
     }
 
     private void actualizarCuadranteCarreras() {
+
         if (panelCarreras == null) {
             return;
         }
+
         panelCarreras.removeAll();
+
         if (comboFiltro.getSelectedItem() == null) {
             return;
         }
@@ -346,39 +434,53 @@ public class Selección_Carrera extends javax.swing.JFrame {
         String seleccion = (String) comboFiltro.getSelectedItem();
         String[] carreras = datosCarreras.get(seleccion);
 
-        // Colores intercalados: morado, blanco, morado
-        Color[] fondos = {MORADO_CELDA, Color.WHITE, MORADO_CELDA};
-        Color[] textos = {Color.WHITE, new Color(45, 37, 80), Color.WHITE};
+        Color[] fondos = {
+            MORADO_CELDA,
+            Color.WHITE,
+            MORADO_CELDA
+        };
+
+        Color[] textos = {
+            Color.WHITE,
+            new Color(45, 37, 80),
+            Color.WHITE
+        };
 
         if (carreras != null) {
-            for (int i = 0; i < 3; i++) {
-                if (i < carreras.length) {
-                    javax.swing.JButton btnCarrera = new javax.swing.JButton(carreras[i]);
-                    btnCarrera.setFont(new Font("SansSerif", Font.BOLD, 13));
-                    btnCarrera.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                    btnCarrera.setBorderPainted(false);
-                    btnCarrera.setFocusPainted(false);
-                    btnCarrera.setBackground(fondos[i]);
-                    btnCarrera.setForeground(textos[i]);
 
-                    final String nombreCarrera = carreras[i];
-                    btnCarrera.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            System.out.println("Carrera seleccionada: " + nombreCarrera);
-                        }
-                    });
+            for (int i = 0; i < carreras.length; i++) {
 
-                    panelCarreras.add(btnCarrera);
-                }
+                JLabel lblCarrera = new JLabel(carreras[i]);
+
+                lblCarrera.setHorizontalAlignment(SwingConstants.CENTER);
+                lblCarrera.setVerticalAlignment(SwingConstants.CENTER);
+
+                lblCarrera.setFont(new Font("Arial", Font.BOLD, 18));
+
+                lblCarrera.setOpaque(true);
+
+                lblCarrera.setBackground(fondos[i]);
+                lblCarrera.setForeground(textos[i]);
+
+                lblCarrera.setBounds(
+                        0,
+                        0,
+                        150,
+                        60
+                );
+
+                panelCarreras.add(lblCarrera);
             }
         }
+
+        redimensionar();
 
         panelCarreras.revalidate();
         panelCarreras.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SeleccionarCarrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
