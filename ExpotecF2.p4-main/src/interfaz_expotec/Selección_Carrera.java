@@ -9,10 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -22,11 +20,8 @@ public class Selección_Carrera extends javax.swing.JFrame {
 
     private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JPanel panelCarreras;
-    private javax.swing.JButton btnSeleccionarCarrera;
     private Map<String, String[]> datosCarreras;
-
-    private final Color GRIS_CELDA = new Color(215, 215, 215);
-    private final Color MORADO_CELDA = new Color(54, 25, 60);
+    private String carreraElegida;
 
     public Selección_Carrera() {
         setUndecorated(false);
@@ -201,7 +196,17 @@ public class Selección_Carrera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SeleccionarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarCarreraActionPerformed
-        // TODO add your handling code here:
+
+        String areaSeleccionada
+                = comboFiltro
+                        .getSelectedItem()
+                        .toString();
+
+        new ÁreasCurriculares(
+                areaSeleccionada
+        ).setVisible(true);
+
+        dispose();
     }//GEN-LAST:event_SeleccionarCarreraActionPerformed
 
     /**
@@ -242,24 +247,17 @@ public class Selección_Carrera extends javax.swing.JFrame {
     private void configurarComponentesDinamicos() {
         jPanel7.setLayout(null);
 
-        btnSeleccionarCarrera = new javax.swing.JButton("Seleccionar carrera");
+        SeleccionarCarrera.setFont(new Font("Arial", Font.BOLD, 16));
 
-        btnSeleccionarCarrera.setFont(new Font("Arial", Font.BOLD, 16));
-        btnSeleccionarCarrera.setBackground(new Color(54, 25, 60));
-        btnSeleccionarCarrera.setForeground(Color.WHITE);
+        SeleccionarCarrera.setBackground(
+                new Color(54, 25, 60)
+        );
 
-        btnSeleccionarCarrera.setFocusPainted(false);
+        SeleccionarCarrera.setForeground(
+                Color.WHITE
+        );
 
-        btnSeleccionarCarrera.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                System.out.println("Carrera seleccionada");
-
-            }
-        });
-
-        jPanel7.add(btnSeleccionarCarrera);
+        SeleccionarCarrera.setFocusPainted(false);
 
         String[] categorias = {"Humanidades", "Económicas", "Ingenierías", "Salud", "Educación"};
         comboFiltro = new javax.swing.JComboBox<>(categorias);
@@ -294,7 +292,7 @@ public class Selección_Carrera extends javax.swing.JFrame {
 
         jPanel7.add(comboFiltro);
         jPanel7.add(panelCarreras);
-        jPanel7.add(btnSeleccionarCarrera);
+        jPanel7.add(SeleccionarCarrera);
 
         jPanel7.revalidate();
         jPanel7.repaint();
@@ -359,18 +357,18 @@ public class Selección_Carrera extends javax.swing.JFrame {
                     panelAlto
             );
 
-            if (btnSeleccionarCarrera != null) {
+            if (SeleccionarCarrera != null) {
 
-                btnSeleccionarCarrera.setBounds(
+                SeleccionarCarrera.setBounds(
                         535,
                         (int) (altoPanel * 0.84), // posición vertical
                         275,
                         (int) (altoPanel * 0.10) // altura
                 );
 
-                btnSeleccionarCarrera.setFont(
+                SeleccionarCarrera.setFont(
                         new Font(
-                                "SansSerif",
+                                "Arial",
                                 Font.BOLD,
                                 (int) (altoPanel * 0.030)
                         )
@@ -411,72 +409,175 @@ public class Selección_Carrera extends javax.swing.JFrame {
     }
 
     private void inicializarDatos() {
-        datosCarreras = new HashMap<>();
-        datosCarreras.put("Humanidades", new String[]{"Filosofía", "Letras Clásicas", "Historia"});
-        datosCarreras.put("Económicas", new String[]{"Administración de Empresas", "Economía", "Contaduría Pública"});
-        datosCarreras.put("Ingenierías", new String[]{"Ingeniería en Sistemas", "Ingeniería Civil", "Ingeniería Industrial"});
-        datosCarreras.put("Salud", new String[]{"Medicina General", "Enfermería", "Nutrición"});
-        datosCarreras.put("Educación", new String[]{"Pedagogía", "Educación Primaria", "Psicopedagogía"});
+
+        datosCarreras = new LinkedHashMap<>();
+
+        // 1
+        datosCarreras.put(
+                "Humanidades",
+                new String[]{
+                    "Filosofía",
+                    "Letras Clásicas",
+                    "Historia"
+                }
+        );
+
+        // 2
+        datosCarreras.put(
+                "Económicas",
+                new String[]{
+                    "Administración de Empresas",
+                    "Economía",
+                    "Contaduría Pública"
+                }
+        );
+
+        // 3
+        datosCarreras.put(
+                "Ingenierías",
+                new String[]{
+                    "Ingeniería en Sistemas",
+                    "Ingeniería Civil",
+                    "Ingeniería Industrial"
+                }
+        );
+
+        // 4
+        datosCarreras.put(
+                "Salud",
+                new String[]{
+                    "Medicina General",
+                    "Enfermería",
+                    "Nutrición"
+                }
+        );
+
+        // 5
+        datosCarreras.put(
+                "Educación",
+                new String[]{
+                    "Pedagogía",
+                    "Educación Primaria",
+                    "Psicopedagogía"
+                }
+        );
     }
 
     private void actualizarCuadranteCarreras() {
 
-        if (panelCarreras == null) {
-            return;
-        }
-
         panelCarreras.removeAll();
 
-        if (comboFiltro.getSelectedItem() == null) {
+        String categoria
+                = comboFiltro.getSelectedItem().toString();
+
+        String[] carreras
+                = datosCarreras.get(categoria);
+
+        carreraElegida = null;
+
+        if (carreras == null) {
             return;
         }
 
-        String seleccion = (String) comboFiltro.getSelectedItem();
-        String[] carreras = datosCarreras.get(seleccion);
+        for (int i = 0; i < carreras.length; i++) {
 
-        Color[] fondos = {
-            MORADO_CELDA,
-            Color.WHITE,
-            MORADO_CELDA
-        };
+            String nombre = carreras[i];
 
-        Color[] textos = {
-            Color.WHITE,
-            new Color(45, 37, 80),
-            Color.WHITE
-        };
+            javax.swing.JLabel lbl
+                    = new javax.swing.JLabel(nombre);
 
-        if (carreras != null) {
+            lbl.setHorizontalAlignment(
+                    javax.swing.SwingConstants.CENTER
+            );
 
-            for (int i = 0; i < carreras.length; i++) {
+            lbl.setOpaque(true);
 
-                JLabel lblCarrera = new JLabel(carreras[i]);
+            lbl.setBackground(
+                    new Color(
+                            208,
+                            197,
+                            228
+                    )
+            );
 
-                lblCarrera.setHorizontalAlignment(SwingConstants.CENTER);
-                lblCarrera.setVerticalAlignment(SwingConstants.CENTER);
+            lbl.setForeground(
+                    new Color(
+                            45,
+                            37,
+                            80
+                    )
+            );
 
-                lblCarrera.setFont(new Font("Arial", Font.BOLD, 18));
+            lbl.setFont(
+                    new Font(
+                            "Arial",
+                            Font.BOLD,
+                            16
+                    )
+            );
 
-                lblCarrera.setOpaque(true);
+            lbl.setBorder(
+                    javax.swing.BorderFactory.createLineBorder(
+                            Color.WHITE,
+                            2
+                    )
+            );
 
-                lblCarrera.setBackground(fondos[i]);
-                lblCarrera.setForeground(textos[i]);
+            lbl.setCursor(
+                    new java.awt.Cursor(
+                            java.awt.Cursor.HAND_CURSOR
+                    )
+            );
 
-                lblCarrera.setBounds(
-                        0,
-                        0,
-                        150,
-                        60
-                );
+            lbl.setBounds(
+                    i * 180,
+                    0,
+                    170,
+                    60
+            );
 
-                panelCarreras.add(lblCarrera);
-            }
+            lbl.addMouseListener(
+                    new java.awt.event.MouseAdapter() {
+
+                @Override
+                public void mouseClicked(
+                        java.awt.event.MouseEvent e
+                ) {
+
+                    carreraElegida = nombre;
+
+                    for (java.awt.Component c
+                            : panelCarreras.getComponents()) {
+
+                        if (c instanceof javax.swing.JLabel) {
+
+                            c.setBackground(
+                                    new Color(
+                                            208,
+                                            197,
+                                            228
+                                    )
+                            );
+                        }
+                    }
+
+                    lbl.setBackground(
+                            new Color(
+                                    156,
+                                    126,
+                                    214
+                            )
+                    );
+                }
+            });
+
+            panelCarreras.add(lbl);
         }
-
-        redimensionar();
 
         panelCarreras.revalidate();
         panelCarreras.repaint();
+
+        redimensionar();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,7 +11,7 @@ package interfaz_expotec;
  */
 public class ÁreasCurriculares extends javax.swing.JFrame {
 
-    private javax.swing.JComboBox<String> comboAreas;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JComboBox<String> combo1mer;
     private javax.swing.JComboBox<String> combo2do;
     private javax.swing.JComboBox<String> combo3cer;
@@ -27,9 +27,17 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
     /**
      * Creates new form ÁreasCurriculares
      */
-    public ÁreasCurriculares() {
+    private String carreraSeleccionada;
+
+    public ÁreasCurriculares(String carrera) {
+
+        this.carreraSeleccionada = carrera;
+
         initComponents();
+
         configurarComboAreas();
+
+        seleccionarCarreraInicial();
 
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         getContentPane().setLayout(null);
@@ -41,11 +49,8 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                redimensionar();
-            }
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            redimensionar();
         });
     }
 
@@ -220,7 +225,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ÁreasCurriculares().setVisible(true);
+                new ÁreasCurriculares("Salud").setVisible(true);
             }
         });
     }
@@ -230,23 +235,35 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         int anchoCombo = 400;
         int xCombo = (977 - anchoCombo) / 2;
 
-        String[] areas = {
-            "Áreas Curriculares: Medicina",
-            "Áreas Curriculares: Filosofía",
-            "Áreas Curriculares: Administración de Empresas",
-            "Áreas Curriculares: Ingeniería en Sistemas",
-            "Áreas Curriculares: Pedagogía"
-        };
+        labelTitulo = new javax.swing.JLabel();
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        comboAreas = new javax.swing.JComboBox<>(areas);
-        comboAreas.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 22));
-        comboAreas.setForeground(new java.awt.Color(45, 37, 80));
-        comboAreas.setBackground(new java.awt.Color(244, 239, 245));
-        comboAreas.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        labelTitulo.setFont(
+                new java.awt.Font(
+                        "SansSerif",
+                        java.awt.Font.BOLD,
+                        28
+                )
+        );
+
+        labelTitulo.setForeground(
+                new java.awt.Color(
+                        45,
+                        37,
+                        80
+                )
+        );
+
+        labelTitulo.setBounds(
+                250,
+                20,
+                500,
+                55
+        );
 
         jPanel8.setLayout(null);
-        comboAreas.setBounds(xCombo, 10, anchoCombo, 55);
-        jPanel8.add(comboAreas);
+
+        jPanel8.add(labelTitulo);
 
         // ── Posiciones base ──
         int anchoColumna = 160;
@@ -298,7 +315,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         };
 
         combo2do = new javax.swing.JComboBox<>(materias2do);
-        combo2do.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 20));
+        combo2do.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
         combo2do.setForeground(new java.awt.Color(45, 37, 80));
         combo2do.setBackground(java.awt.Color.WHITE);
         combo2do.setBounds(x2, 150, anchoColumna, 30);
@@ -306,7 +323,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
 
         // ── Label y ComboBox 3cer Año ──
         labelAnio3 = new javax.swing.JLabel("   3cer Año");
-        labelAnio3.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 20));
+        labelAnio3.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
         labelAnio3.setForeground(new java.awt.Color(45, 37, 80));
         labelAnio3.setBackground(new java.awt.Color(208, 197, 228));
         labelAnio3.setOpaque(true);
@@ -322,7 +339,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         };
 
         combo3cer = new javax.swing.JComboBox<>(materias3cer);
-        combo3cer.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 20));
+        combo3cer.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
         combo3cer.setForeground(new java.awt.Color(45, 37, 80));
         combo3cer.setBackground(java.awt.Color.WHITE);
         combo3cer.setBounds(x3, 150, anchoColumna, 30);
@@ -330,7 +347,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
 
         // ── Label y ComboBox 4to Año ──
         labelAnio4 = new javax.swing.JLabel("   4to Año");
-        labelAnio4.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 20));
+        labelAnio4.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
         labelAnio4.setForeground(new java.awt.Color(45, 37, 80));
         labelAnio4.setBackground(new java.awt.Color(208, 197, 228));
         labelAnio4.setOpaque(true);
@@ -346,7 +363,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         };
 
         combo4to = new javax.swing.JComboBox<>(materias4to);
-        combo4to.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 20));
+        combo4to.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
         combo4to.setForeground(new java.awt.Color(45, 37, 80));
         combo4to.setBackground(java.awt.Color.WHITE);
         combo4to.setBounds(x4, 150, anchoColumna, 30);
@@ -354,7 +371,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
 
         // ── Label y ComboBox 5to Año ──
         labelAnio5 = new javax.swing.JLabel("   5to Año");
-        labelAnio5.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 20));
+        labelAnio5.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
         labelAnio5.setForeground(new java.awt.Color(45, 37, 80));
         labelAnio5.setBackground(new java.awt.Color(208, 197, 228));
         labelAnio5.setOpaque(true);
@@ -370,7 +387,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         };
 
         combo5to = new javax.swing.JComboBox<>(materias5to);
-        combo5to.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 20));
+        combo5to.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
         combo5to.setForeground(new java.awt.Color(45, 37, 80));
         combo5to.setBackground(java.awt.Color.WHITE);
         combo5to.setBounds(x5, 150, anchoColumna, 30);
@@ -384,7 +401,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         };
 
         comboSubtitulo = new javax.swing.JComboBox<>(subtitulos);
-        comboSubtitulo.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 16));
+        comboSubtitulo.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 16));
         comboSubtitulo.setForeground(new java.awt.Color(45, 37, 80));
         comboSubtitulo.setBackground(new java.awt.Color(244, 239, 245));
         comboSubtitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -401,50 +418,139 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
                 actualizarMateriasPorSubtitulo();
             }
         });
-        
+
         actualizarVisibilidadCombos();
     }
 
+    private void seleccionarCarreraInicial() {
+
+        if (carreraSeleccionada == null) {
+            return;
+        }
+
+        labelTitulo.setText(
+                "Áreas Curriculares: " + carreraSeleccionada
+        );
+
+        actualizarContenidoPorCarrera();
+    }
+
     private void actualizarMateriasPorSubtitulo() {
+
         if (comboSubtitulo == null) {
             return;
         }
 
-        String seleccion = (String) comboSubtitulo.getSelectedItem();
+        String seleccion
+                = (String) comboSubtitulo.getSelectedItem();
 
-        String[] m1, m2, m3, m4, m5;
+        if (seleccion == null) {
+            return;
+        }
+
+        String[] m1;
+        String[] m2;
+        String[] m3;
+        String[] m4;
+        String[] m5;
 
         switch (seleccion) {
+
             case "Ciencias Básicas y biológicas":
-                m1 = new String[]{"Química", "Física", "Biología celular"};
-                m2 = new String[]{"Anatomía Humana", "Histología", "Bioquímica", "Fisiología"};
-                m3 = new String[]{"Patología", "Microbiología", "Farmacología"};
-                m4 = new String[]{"Medicina Interna", "Cirugía General", "Pediatría"};
-                m5 = new String[]{"Ginecología", "Psiquiatría", "Neurología"};
+
+                m1 = new String[]{
+                    "Química",
+                    "Física",
+                    "Biología celular"
+                };
+
+                m2 = new String[]{
+                    "Anatomía",
+                    "Histología",
+                    "Bioquímica"
+                };
+
+                m3 = new String[]{
+                    "Patología",
+                    "Microbiología"
+                };
+
+                m4 = new String[]{
+                    "Medicina Interna"
+                };
+
+                m5 = new String[]{
+                    "Ginecología"
+                };
+
                 break;
 
             case "Ciencias sociales y salud pública":
-                m1 = new String[]{"Psicología", "Salud Pública I"};
-                m2 = new String[]{"Salud Pública II"};
-                m3 = new String[]{"Salud Pública III"};
-                m4 = new String[]{"", "", ""};
-                m5 = new String[]{"", "", ""};
+
+                m1 = new String[]{
+                    "Psicología"
+                };
+
+                m2 = new String[]{
+                    "Salud Pública"
+                };
+
+                m3 = new String[]{
+                    "Epidemiología"
+                };
+
+                m4 = new String[]{};
+
+                m5 = new String[]{};
+
                 break;
 
             case "Ciencias Clínicas":
-                m1 = new String[]{"Propedéutica"};
-                m2 = new String[]{"Semiología Médica I"};
-                m3 = new String[]{"Semiología Médica II"};
-                m4 = new String[]{"Medicina Interna", "Cirugía General", "Medicina Familiar"};
-                m5 = new String[]{"Práctica Electiva de Especialidades", "Pediatría", "Ginecología y Obstetrica", "Traumatología uy Ortopedia", "Salud Mental y Psiquiatría"};
+
+                m1 = new String[]{
+                    "Propedéutica"
+                };
+
+                m2 = new String[]{
+                    "Semiología"
+                };
+
+                m3 = new String[]{
+                    "Diagnóstico"
+                };
+
+                m4 = new String[]{
+                    "Cirugía"
+                };
+
+                m5 = new String[]{
+                    "Especialidades"
+                };
+
                 break;
 
             case "Investigación":
-                m1 = new String[]{"Fundamentos de la Investigación Científica", "Biostadística"};
-                m2 = new String[]{"", "", ""};
-                m3 = new String[]{"Métodos de investigación en Medicina"};
-                m4 = new String[]{"Tesis I", "Publicación científica", "Revisión sistemática"};
-                m5 = new String[]{"Tesis II", "Investigación avanzada", "Innovación médica"};
+
+                m1 = new String[]{
+                    "Investigación I"
+                };
+
+                m2 = new String[]{
+                    "Investigación II"
+                };
+
+                m3 = new String[]{
+                    "Metodología"
+                };
+
+                m4 = new String[]{
+                    "Tesis I"
+                };
+
+                m5 = new String[]{
+                    "Tesis II"
+                };
+
                 break;
 
             default:
@@ -456,6 +562,8 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         actualizarCombo(combo3cer, m3);
         actualizarCombo(combo4to, m4);
         actualizarCombo(combo5to, m5);
+
+        redimensionar();
     }
 
     private void actualizarCombo(javax.swing.JComboBox<String> combo, String[] items) {
@@ -466,15 +574,16 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
     }
 
     private void actualizarVisibilidadCombos() {
-        if (comboAreas == null || comboSubtitulo == null) {
+        if (labelTitulo == null || comboSubtitulo == null) {
             return;
         }
 
-        String area = (String) comboAreas.getSelectedItem();
+        String area = carreraSeleccionada;
         String subtitulo = (String) comboSubtitulo.getSelectedItem();
 
         boolean ocultarUltimos
-                = "Áreas Curriculares: Medicina".equals(area) && ("Ciencias Básicas y biológicas".equals(subtitulo)
+                = "Áreas Curriculares: Medicina".equals(area)
+                && ("Ciencias Básicas y biológicas".equals(subtitulo)
                 || "Ciencias sociales y salud pública".equals(subtitulo)
                 || "Investigación".equals(subtitulo));
 
@@ -485,6 +594,90 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
 
         jPanel8.revalidate();
         jPanel8.repaint();
+    }
+
+    private void actualizarContenidoPorCarrera() {
+
+    if (carreraSeleccionada == null) {
+        return;
+    }
+
+    labelTitulo.setText(
+            "Áreas Curriculares: "
+            + carreraSeleccionada
+    );
+
+    comboSubtitulo.removeAllItems();
+
+    switch (carreraSeleccionada) {
+
+        case "Humanidades":
+
+            agregarSubtitulos(
+                    "Filosofía Antigua",
+                    "Filosofía Moderna",
+                    "Ética",
+                    "Metafísica"
+            );
+
+            break;
+
+        case "Económicas":
+
+            agregarSubtitulos(
+                    "Contabilidad",
+                    "Economía",
+                    "Mercadeo",
+                    "Finanzas"
+            );
+
+            break;
+
+        case "Ingenierías":
+
+            agregarSubtitulos(
+                    "Programación",
+                    "Bases de Datos",
+                    "Redes",
+                    "Desarrollo"
+            );
+
+            break;
+
+        case "Salud":
+
+            agregarSubtitulos(
+                    "Ciencias Básicas y biológicas",
+                    "Ciencias sociales y salud pública",
+                    "Ciencias Clínicas",
+                    "Investigación"
+            );
+
+            break;
+
+        case "Educación":
+
+            agregarSubtitulos(
+                    "Didáctica",
+                    "Psicología Educativa",
+                    "Currículo",
+                    "Evaluación"
+            );
+
+            break;
+    }
+
+    comboSubtitulo.setSelectedIndex(0);
+
+    actualizarMateriasPorSubtitulo();
+}
+
+    private void agregarSubtitulos(String... datos) {
+
+        for (String s : datos) {
+            comboSubtitulo.addItem(s);
+        }
+
     }
 
     private void redimensionar() {
@@ -512,15 +705,29 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         // ── ComboBox título (centrado) ──
         int anchoComboTitulo = (int) (anchoPan * 0.42);
         int xComboTitulo = (anchoPan - anchoComboTitulo) - 480;
-        comboAreas.setBounds(xComboTitulo, 40, anchoComboTitulo, 50);
-        comboAreas.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, (int) (anchoPan * 0.022)));
+        int anchoTitulo = (int) (anchoPan * 0.60);
+
+        labelTitulo.setBounds(
+                (anchoPan - anchoTitulo) / 2,
+                40,
+                anchoTitulo,
+                50
+        );
+
+        labelTitulo.setFont(
+                new java.awt.Font(
+                        "Arial",
+                        java.awt.Font.BOLD,
+                        (int) (anchoPan * 0.025)
+                )
+        );
 
         // ── comboSubtitulo ──
         if (comboSubtitulo != null) {
             int anchoSubtitulo = (int) (anchoPan * 0.38);
             int xSubtitulo = (anchoPan - anchoSubtitulo) / 2;
             comboSubtitulo.setBounds(xSubtitulo, 100, anchoSubtitulo, 40);
-            comboSubtitulo.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, (int) (anchoPan * 0.016)));
+            comboSubtitulo.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, (int) (anchoPan * 0.016)));
         }
 
         // ── Columnas de años ──
@@ -539,26 +746,97 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         }
 
         // Labels de año
-        javax.swing.JLabel[] labels = {labelAnio1, labelAnio2, labelAnio3, labelAnio4, labelAnio5};
-        String[] nombres = {"  1er Año", "  2do Año", "  3er Año", "  4to Año", "  5to Año"};
+        javax.swing.JLabel[] labels = {
+            labelAnio1,
+            labelAnio2,
+            labelAnio3,
+            labelAnio4,
+            labelAnio5
+        };
 
-        for (int i = 0; i < 5; i++) {
-            labels[i].setText(nombres[i]);
-            labels[i].setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, tamFuente));
-            labels[i].setBounds(xCols[i], yLabel, anchoColumna, 45);
+        javax.swing.JComboBox[] combos = {
+            combo1mer,
+            combo2do,
+            combo3cer,
+            combo4to,
+            combo5to
+        };
+
+        String[] nombres = {
+            "1er Año",
+            "2do Año",
+            "3er Año",
+            "4to Año",
+            "5to Año"
+        };
+
+// Contar visibles
+        int visibles = 0;
+
+        for (javax.swing.JComboBox c : combos) {
+            if (c.isVisible() && c.getItemCount() > 0) {
+                visibles++;
+            }
         }
 
-        // ComboBoxes de año
-        javax.swing.JComboBox[] combos = {combo1mer, combo2do, combo3cer, combo4to, combo5to};
-        for (int i = 0; i < 5; i++) {
-            combos[i].setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, tamFuente));
-            combos[i].setBounds(xCols[i], yCombo, anchoColumna, altoCombo);
-        }
+        if (visibles > 0) {
 
-        jPanel8.revalidate();
-        jPanel8.repaint();
-        jPanel5.revalidate();
-        jPanel5.repaint();
+            int anchoTotal
+                    = (visibles * anchoColumna)
+                    + ((visibles - 1) * separacion);
+
+            int inicioX = (anchoPan - anchoTotal) / 2;
+
+            int pos = 0;
+
+            for (int i = 0; i < combos.length; i++) {
+
+                boolean mostrar
+                        = combos[i].isVisible()
+                        && combos[i].getItemCount() > 0;
+
+                labels[i].setVisible(mostrar);
+                combos[i].setVisible(mostrar);
+
+                if (mostrar) {
+
+                    int x = inicioX + pos * (anchoColumna + separacion);
+
+                    labels[i].setText(nombres[i]);
+                    labels[i].setFont(
+                            new java.awt.Font(
+                                    "Arial",
+                                    java.awt.Font.BOLD,
+                                    tamFuente
+                            )
+                    );
+
+                    labels[i].setBounds(
+                            x,
+                            yLabel,
+                            anchoColumna,
+                            45
+                    );
+
+                    combos[i].setFont(
+                            new java.awt.Font(
+                                    "Arial",
+                                    java.awt.Font.PLAIN,
+                                    tamFuente
+                            )
+                    );
+
+                    combos[i].setBounds(
+                            x,
+                            yCombo,
+                            anchoColumna,
+                            altoCombo
+                    );
+
+                    pos++;
+                }
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
