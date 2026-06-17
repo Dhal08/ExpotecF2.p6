@@ -81,7 +81,7 @@ public class Selección_Carrera extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Inicio");
+        jLabel1.setText("Selección Carrera");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
