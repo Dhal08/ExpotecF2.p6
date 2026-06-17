@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package interfaz_expotec;
-
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,10 +13,9 @@ public class Prueba extends javax.swing.JFrame {
 
     private int preguntaActual = 1;
     private final int Total_Preguntas = 10;
-    
-    // 1. BANCO DE PREGUNTAS
+    private boolean pruebaCompletada = false;
+
     private String[] preguntas = {
-        
         "¿Cómo reaccionas cuando obtienes una calificación baja en un examen para el cual estudiaste mucho?",
         "Cuando debes preparar un examen basado en capítulos completos de libros extensos y densos, ¿cómo procedes?",
         "¿Con qué frecuencia te interesa armar, desarmar o programar objetos tecnológicos, o software?",
@@ -31,51 +27,115 @@ public class Prueba extends javax.swing.JFrame {
         "Al estudiar o simular un examen en una plataforma digital con una interfaz directa, sobria y formal, tú:",
         "Al simular exámenes de admisión o pruebas parciales exigentes antes de ingresar a la universidad, ¿qué es lo que más valoras obtener?"
     };
-    
-    // 2. BANCO DE OPCIONES
+
     private String[][] opciones = {
-        
-        {"A) Analizo detalladamente mi examen, busco el material oficial and modifico mi método.", "B) Me frustro un poco, pero pido consejo a compañeros o profesores para repasar.", "C) Me desmotivo y cuestiono si realmente soy apto para esta materia o carrera.", "D) Me enfado con el sistema, considerando que la prueba fue injusta o rebuscada."},
+        {"A) Analizo detalladamente mi examen, busco el material oficial y modifico mi método.", "B) Me frustro un poco, pero pido consejo a compañeros o profesores para repasar.", "C) Me desmotivo y cuestiono si realmente soy apto para esta materia o carrera.", "D) Me enfado con el sistema, considerando que la prueba fue injusta o rebuscada."},
         {"A) Asumo la responsabilidad, planifico con tiempo y desgloso los capítulos solo.", "B) Busco resúmenes hechos por otros estudiantes o guías cortas en internet.", "C) Dependo de que un tutor, profesor o aplicación me explique los conceptos clave.", "D) Me cuesta organizarme solo y suelo dejar la lectura para los últimos días."},
         {"A) Siempre, me apasiona entender cómo funcionan las cosas a nivel de software.", "B) A veces, si el objeto o programa llama mucho mi atención.", "C) Rara vez, prefiero usar la tecnología en lugar de crearla o programarla.", "D) Nunca, me interesa más las áreas humanísticas o creativas."},
         {"A) Fascinado; me apasiona comprender mecanismos biológicos a nivel profundo.", "B) Interesado, siempre que sea práctico y no requiera tanta lectura teórica.", "C) Intimidado por la cantidad de memoria y precisión que se exige en el área.", "D) Indiferente; prefiero áreas relacionadas con las humanidades o artes digitales."},
-        {"A) Me entusiasma el desafío intelectual de interpretar textos complejos y debatir.", "B) Me interesa el impacto social, pero me resulta pesado leer documentos largos.", "C) Prefiero la resolución de problemas mediante fórmulas o creatividad aplicada.", "D) No no me atrae en absoluto la lectura analítica ni el entorno legal."},
+        {"A) Me entusiasma el desafío intelectual de interpretar textos complejos y debatir.", "B) Me interesa el impacto social, pero me resulta pesado leer documentos largos.", "C) Prefiero la resolución de problemas mediante fórmulas o creatividad aplicada.", "D) No me atrae en absoluto la lectura analítica ni el entorno legal."},
         {"A) Exámenes formales y estrictos basados exclusivamente en la bibliografía oficial.", "B) Evaluaciones prácticas, proyectos dinámicos o trabajos colaborativos en grupo.", "C) Cuestionarios cortos con retroalimentación inmediata y un enfoque interactivo.", "D) Pruebas sencillas que solo midan la comprensión general o rapidez lectora."},
         {"A) Lo tomo como un reto necesario; investigo los términos hasta dominar el lenguaje.", "B) Intento comprender el contexto general saltándome las palabras complejas.", "C) Me confundo rápidamente y pierdo el interés si el material no es cotidiano.", "D) Evito ese tipo de lecturas; prefiero contenidos audiovisuales o esquemas simples."},
         {"A) Yo mismo; el éxito depende de mi disciplina para estudiar el material oficial.", "B) Compartida; requiero que la institución me brinde herramientas interactivas.", "C) El docente o la plataforma de estudio; su rol debe ser guiarme paso a paso.", "D) El sistema de estudio general; si las preguntas son confusas el diseño falló."},
         {"A) Mantengo el foco al 100%, prefiero un entorno profesional serio y real.", "B) Me adapto bien, aunque preferiría algún tipo de recordatorio visual de progreso.", "C) Me distraigo con facilidad; necesito colores atractivos y mecánicas dinámicas.", "D) Me resulta abrumador y me genera ansiedad enfrentarme a una pantalla rígida."},
         {"A) Claridad absoluta sobre el nivel real de dificultad y la profundidad conceptual.", "B) Un diagnóstico rápido que me diga si aprobaría o no de manera general.", "C) Una experiencia guiada y cómoda que aumente mi confianza evitando frustrarme.", "D) Ejercicios rápidos para practicar a última hora antes del examen oficial."}
     };
-            
-    public Prueba() {   
+
+    public Prueba() {
         this.setUndecorated(true);
         initComponents();
-        
+
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        
+
         jProgressBar1.setMinimum(0);
-        jProgressBar1.setMaximum(Total_Preguntas);
-        jProgressBar1.setValue(preguntaActual);
+        jProgressBar1.setMaximum(100);
         jProgressBar1.setStringPainted(true);
-        
+
+        // =========================================================================
+        // CENTRADO DINÁMICO TOTAL (ANCHO Y ALTO)
+        // =========================================================================
+        int anchoPantalla = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+        int altoPantalla = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+
+        int xCentrado = (anchoPantalla - 940) / 2;
+
+        // Calculamos un punto medio vertical dinámico para posicionar la tarjeta central
+        int yTarjeta = (altoPantalla - 500) / 2;
+        if (yTarjeta < 100) {
+            yTarjeta = 120; // Seguro por si la pantalla es excesivamente pequeña
+        }
+        // Reubicación de elementos basada en las dimensiones de la pantalla actual
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, anchoPantalla, 70));
+        jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(xCentrado, yTarjeta - 40, 940, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(xCentrado + 940 - 170, yTarjeta - 70, -1, -1));
+
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(xCentrado, yTarjeta, 940, 480));
+
+        // Los botones se posicionan exactamente 15 píxeles debajo del contenedor blanco
+        int yBotones = yTarjeta + 480 + 15;
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(xCentrado, yBotones, 160, 45));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(xCentrado + 940 - 160, yBotones, 160, 45));
+
+        // Footer fijado siempre en el límite inferior extremo
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, altoPantalla - 70, anchoPantalla, 70));
+        // =========================================================================
+
         actualizarPregunta();
     }
 
-    // 3. ACTUALIZACIÓN ADAPTATIVA DE TEXTOS
     private void actualizarPregunta() {
-        int index = preguntaActual - 1; 
-        
-        jLabel7.setText("<html><body style='width: 800px; text-align: center; font-family: SansSerif; font-weight: bold; color: #2D2550;'>" 
-                + preguntas[index] + "</body></html>");
-        
+        pruebaCompletada = false;
+        int index = preguntaActual - 1;
+
+        jRadioButton1.setVisible(true);
+        jRadioButton2.setVisible(true);
+        jRadioButton3.setVisible(true);
+        jRadioButton4.setVisible(true);
+        jButton1.setText("Siguiente");
+
+        if (preguntaActual == 1) {
+            jButton2.setVisible(false);
+        } else {
+            jButton2.setVisible(true);
+        }
+
+        jLabel7.setText("<html><div style='text-align: center; font-family: SansSerif; font-weight: bold; color: #2D2550; font-size: 19px;'>"
+                + preguntas[index] + "</div></html>");
+
         jLabel8.setText("");
-        
-        jRadioButton1.setText(opciones[index][0]);
-        jRadioButton2.setText(opciones[index][1]);
-        jRadioButton3.setText(opciones[index][2]);
-        jRadioButton4.setText(opciones[index][3]);
-        
-        jLabel2.setText("Pregunta " + preguntaActual + " de " + Total_Preguntas + " (" + (preguntaActual * 10) + "%)");
+
+        jRadioButton1.setText("<html><body style='width: 760px;'>" + opciones[index][0] + "</body></html>");
+        jRadioButton2.setText("<html><body style='width: 760px;'>" + opciones[index][1] + "</body></html>");
+        jRadioButton3.setText("<html><body style='width: 760px;'>" + opciones[index][2] + "</body></html>");
+        jRadioButton4.setText("<html><body style='width: 760px;'>" + opciones[index][3] + "</body></html>");
+
+        int porcentaje = index * 10;
+        jProgressBar1.setValue(porcentaje);
+
+        jLabel2.setText("Pregunta " + preguntaActual + " de " + Total_Preguntas + " (" + porcentaje + "%)");
+
+        jPanel7.revalidate();
+        jPanel7.repaint();
+    }
+
+    private void mostrarPantallaFinal() {
+        pruebaCompletada = true;
+        jProgressBar1.setValue(100);
+        jLabel2.setText("100%");
+
+        jLabel7.setText("<html><div style='text-align: center; font-family: SansSerif; font-weight: bold; color: #2D2550; font-size: 24px;'>"
+                + "¡Felicidades, completaste la prueba vocacional!</div></html>");
+
+        jRadioButton1.setVisible(false);
+        jRadioButton2.setVisible(false);
+        jRadioButton3.setVisible(false);
+        jRadioButton4.setVisible(false);
+
+        jButton2.setVisible(true);
+        jButton1.setText("Avanzar");
+
+        jPanel7.revalidate();
+        jPanel7.repaint();
     }
 
     /**
@@ -122,18 +182,18 @@ public class Prueba extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel1)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addContainerGap(24, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel1)
+                                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, -1));
@@ -149,28 +209,28 @@ public class Prueba extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(562, 562, 562)
-                    .addComponent(jLabel10)
-                    .addContainerGap(562, Short.MAX_VALUE)))
+                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel5)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGap(562, 562, 562)
+                                        .addComponent(jLabel10)
+                                        .addContainerGap(562, Short.MAX_VALUE)))
         );
         jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap())
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(11, 11, 11)
-                    .addComponent(jLabel10)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addContainerGap())
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(jLabel10)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1190, 70));
@@ -250,45 +310,49 @@ public class Prueba extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>                                                        
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        if (preguntaActual > 1) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (pruebaCompletada) {
+            actualizarPregunta();
+        } else if (preguntaActual > 1) {
             preguntaActual--;
-            jProgressBar1.setValue(preguntaActual);
             actualizarPregunta();
         }
-    }                                        
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected() &&
-                !jRadioButton3.isSelected() && !jRadioButton4.isSelected()){
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (pruebaCompletada) {
+            Selección_Carrera Seleccion = new Selección_Carrera();
+            Seleccion.setVisible(true);
+            this.dispose();
+            return;
+        }
+
+        if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected()
+                && !jRadioButton3.isSelected() && !jRadioButton4.isSelected()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, Selecciona una respuesta.");
             return;
         }
-        
-       if (preguntaActual < Total_Preguntas){
-           preguntaActual++;
-           jProgressBar1.setValue(preguntaActual);
-           
-           actualizarPregunta();
-           
-           buttonGroup1.clearSelection();
-       } else {
-           Selección_Carrera Seleccion = new Selección_Carrera();
-           Seleccion.setVisible(true);
-           this.dispose();
-       }
-    }                                        
+
+        if (preguntaActual < Total_Preguntas) {
+            preguntaActual++;
+            buttonGroup1.clearSelection();
+            actualizarPregunta();
+        } else {
+            buttonGroup1.clearSelection();
+            mostrarPantallaFinal();
+        }
+    }
 
     /**
      * @param args the command line arguments
