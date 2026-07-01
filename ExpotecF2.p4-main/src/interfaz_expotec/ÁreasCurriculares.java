@@ -23,6 +23,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
     private javax.swing.JLabel labelAnio3;
     private javax.swing.JLabel labelAnio4;
     private javax.swing.JLabel labelAnio5;
+    private javax.swing.JButton btnIniciar;
 
     /**
      * Creates new form ÁreasCurriculares
@@ -68,7 +69,6 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -106,8 +106,6 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz_expotec/Recursos/imagen_66x47.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -115,12 +113,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(562, 562, 562)
-                    .addComponent(jLabel10)
-                    .addContainerGap(562, Short.MAX_VALUE)))
+                .addContainerGap(1184, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,11 +121,6 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
                 .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addContainerGap())
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(11, 11, 11)
-                    .addComponent(jLabel10)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jPanel8.setBackground(new java.awt.Color(244, 239, 245));
@@ -165,7 +153,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 977, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,6 +396,28 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         comboSubtitulo.setBounds(375, 75, 350, 35);
         jPanel8.add(comboSubtitulo);
 
+        btnIniciar = new javax.swing.JButton("Iniciar");
+        btnIniciar.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
+        btnIniciar.setForeground(java.awt.Color.WHITE);
+        btnIniciar.setBackground(new java.awt.Color(68, 22, 61)); // #44163D
+        btnIniciar.setFocusPainted(false);
+        btnIniciar.setBorder(javax.swing.BorderFactory.createLineBorder(
+                new java.awt.Color(104, 89, 151), 2, true));
+        btnIniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                Carrera carrera = new Carrera();
+                carrera.setVisible(true);
+
+                dispose(); // Cierra la ventana actual
+            }
+        });
+
+        jPanel8.add(btnIniciar);
+
         jPanel8.revalidate();
         jPanel8.repaint();
 
@@ -598,79 +608,79 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
 
     private void actualizarContenidoPorCarrera() {
 
-    if (carreraSeleccionada == null) {
-        return;
+        if (carreraSeleccionada == null) {
+            return;
+        }
+
+        labelTitulo.setText(
+                "Áreas Curriculares: "
+                + carreraSeleccionada
+        );
+
+        comboSubtitulo.removeAllItems();
+
+        switch (carreraSeleccionada) {
+
+            case "Humanidades":
+
+                agregarSubtitulos(
+                        "Filosofía Antigua",
+                        "Filosofía Moderna",
+                        "Ética",
+                        "Metafísica"
+                );
+
+                break;
+
+            case "Económicas":
+
+                agregarSubtitulos(
+                        "Contabilidad",
+                        "Economía",
+                        "Mercadeo",
+                        "Finanzas"
+                );
+
+                break;
+
+            case "Ingenierías":
+
+                agregarSubtitulos(
+                        "Programación",
+                        "Bases de Datos",
+                        "Redes",
+                        "Desarrollo"
+                );
+
+                break;
+
+            case "Salud":
+
+                agregarSubtitulos(
+                        "Ciencias Básicas y biológicas",
+                        "Ciencias sociales y salud pública",
+                        "Ciencias Clínicas",
+                        "Investigación"
+                );
+
+                break;
+
+            case "Educación":
+
+                agregarSubtitulos(
+                        "Didáctica",
+                        "Psicología Educativa",
+                        "Currículo",
+                        "Evaluación"
+                );
+
+                break;
+        }
+
+        comboSubtitulo.setSelectedIndex(0);
+
+        actualizarMateriasPorSubtitulo();
     }
-
-    labelTitulo.setText(
-            "Áreas Curriculares: "
-            + carreraSeleccionada
-    );
-
-    comboSubtitulo.removeAllItems();
-
-    switch (carreraSeleccionada) {
-
-        case "Humanidades":
-
-            agregarSubtitulos(
-                    "Filosofía Antigua",
-                    "Filosofía Moderna",
-                    "Ética",
-                    "Metafísica"
-            );
-
-            break;
-
-        case "Económicas":
-
-            agregarSubtitulos(
-                    "Contabilidad",
-                    "Economía",
-                    "Mercadeo",
-                    "Finanzas"
-            );
-
-            break;
-
-        case "Ingenierías":
-
-            agregarSubtitulos(
-                    "Programación",
-                    "Bases de Datos",
-                    "Redes",
-                    "Desarrollo"
-            );
-
-            break;
-
-        case "Salud":
-
-            agregarSubtitulos(
-                    "Ciencias Básicas y biológicas",
-                    "Ciencias sociales y salud pública",
-                    "Ciencias Clínicas",
-                    "Investigación"
-            );
-
-            break;
-
-        case "Educación":
-
-            agregarSubtitulos(
-                    "Didáctica",
-                    "Psicología Educativa",
-                    "Currículo",
-                    "Evaluación"
-            );
-
-            break;
-    }
-
-    comboSubtitulo.setSelectedIndex(0);
-
-    actualizarMateriasPorSubtitulo();
-}
 
     private void agregarSubtitulos(String... datos) {
 
@@ -833,6 +843,26 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
                             altoCombo
                     );
 
+                    // ───── Botón Iniciar ─────
+                    if (btnIniciar != null) {
+
+                        int anchoBoton = (int) (anchoPan * 0.20);
+                        int altoBoton = 50;
+
+                        btnIniciar.setBounds(
+                                (anchoPan - anchoBoton) / 2,
+                                (altoPan - altoBoton) / 2 + 300,
+                                anchoBoton,
+                                altoBoton
+                        );
+
+                        btnIniciar.setFont(new java.awt.Font(
+                                "Arial",
+                                java.awt.Font.BOLD,
+                                Math.max(16, (int) (anchoPan * 0.018))
+                        ));
+                    }
+
                     pos++;
                 }
             }
@@ -840,7 +870,6 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;

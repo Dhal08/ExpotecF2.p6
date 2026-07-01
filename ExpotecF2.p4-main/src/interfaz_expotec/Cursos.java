@@ -17,15 +17,15 @@ public class Cursos extends javax.swing.JFrame {
      * Creates new form Cursos
      */
     public Cursos() {
-    initComponents();
-    setExtendedState(JFrame.MAXIMIZED_BOTH);
-    addComponentListener(new java.awt.event.ComponentAdapter() {
-        @Override
-        public void componentResized(java.awt.event.ComponentEvent evt) {
-            redimensionar();
-        }
-    });
-}
+        initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                redimensionar();
+            }
+        });
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -651,7 +651,10 @@ public class Cursos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-   
+        Modulo modulo = new Modulo();
+        modulo.setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -695,72 +698,72 @@ public class Cursos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void redimensionar() {
-    int ancho = getContentPane().getWidth();
-    int alto  = getContentPane().getHeight();
+        int ancho = getContentPane().getWidth();
+        int alto = getContentPane().getHeight();
 
-    int margen  = 30;
-    int altoFila = 105;
-    int espacioFila = 40;
+        int margen = 30;
+        int altoFila = 105;
+        int espacioFila = 40;
 
-    // Barra superior
-    jPanel2.setBounds(0, 0, ancho, 70);
+        // Barra superior
+        jPanel2.setBounds(0, 0, ancho, 70);
 
-    // Barra inferior
-    jPanel6.setBounds(0, alto - 70, ancho, 70);
+        // Barra inferior
+        jPanel6.setBounds(0, alto - 70, ancho, 70);
 
-    // Títulos superiores
-    jLabel13.setBounds(margen, 150, 300, 30);
-    jLabel7.setBounds(margen, 200, 800, 25);
+        // Títulos superiores
+        jLabel13.setBounds(margen, 150, 300, 30);
+        jLabel7.setBounds(margen, 200, 800, 25);
 
-    int anchoFila = ancho - (margen * 2);
-    
-    int yFila1 = 300;
-    int yFila2 = yFila1 + altoFila + espacioFila;
-    int yFila3 = yFila2 + altoFila + espacioFila;
-    int yFila4 = yFila3 + altoFila + espacioFila;
+        int anchoFila = ancho - (margen * 2);
 
-    // Posiciones internas
-    int xNumero  = 15;
-    int xTexto   = 100;
-    int anchoNum = 60;
-    int xBoton   = anchoFila - 170;
-    int xBloqueo = anchoFila - 340;
+        int yFila1 = 300;
+        int yFila2 = yFila1 + altoFila + espacioFila;
+        int yFila3 = yFila2 + altoFila + espacioFila;
+        int yFila4 = yFila3 + altoFila + espacioFila;
 
-    // Fila 1
-    jPanel5.setBounds(margen, yFila1, anchoFila, altoFila);
-    jLabel4.setBounds(xNumero, 23, anchoNum, 60);
-    jLabel48.setBounds(xTexto, 20, anchoFila - 300, 25);
-    jLabel14.setBounds(xTexto, 45, anchoFila - 300, 22);
-    jLabel19.setBounds(xBloqueo, 30, 160, 25);
-    jButton2.setBounds(xBoton, 20, 160, 50);
+        // Posiciones internas
+        int xNumero = 15;
+        int xTexto = 100;
+        int anchoNum = 60;
+        int xBoton = anchoFila - 170;
+        int xBloqueo = anchoFila - 340;
 
-    // Fila 2
-    jPanel13.setBounds(margen, yFila2, anchoFila, altoFila);
-    jLabel44.setBounds(xNumero, 23, anchoNum, 60);
-    jLabel45.setBounds(xTexto, 20, anchoFila - 300, 25);
-    jLabel33.setBounds(xTexto, 45, anchoFila - 300, 22);
-    jLabel34.setBounds(xBloqueo, 25, 160, 30);
-    jButton9.setBounds(xBoton, 20, 160, 50);
+        // Fila 1
+        jPanel5.setBounds(margen, yFila1, anchoFila, altoFila);
+        jLabel4.setBounds(xNumero, 23, anchoNum, 60);
+        jLabel48.setBounds(xTexto, 20, anchoFila - 300, 25);
+        jLabel14.setBounds(xTexto, 45, anchoFila - 300, 22);
+        jLabel19.setBounds(xBloqueo, 30, 160, 25);
+        jButton2.setBounds(xBoton, 20, 160, 50);
 
-    // Fila 3
-    jPanel4.setBounds(margen, yFila3, anchoFila, altoFila);
-    jLabel32.setBounds(xNumero, 23, anchoNum, 60);
-    jLabel46.setBounds(xTexto, 20, anchoFila - 300, 25);
-    jLabel39.setBounds(xTexto, 45, anchoFila - 300, 22);
-    jLabel18.setBounds(xBloqueo, 25, 160, 30);
-    jButton1.setBounds(xBoton, 20, 160, 50);
+        // Fila 2
+        jPanel13.setBounds(margen, yFila2, anchoFila, altoFila);
+        jLabel44.setBounds(xNumero, 23, anchoNum, 60);
+        jLabel45.setBounds(xTexto, 20, anchoFila - 300, 25);
+        jLabel33.setBounds(xTexto, 45, anchoFila - 300, 22);
+        jLabel34.setBounds(xBloqueo, 25, 160, 30);
+        jButton9.setBounds(xBoton, 20, 160, 50);
 
-    // Fila 4
-    jPanel15.setBounds(margen, yFila4, anchoFila, altoFila);
-    jLabel38.setBounds(xNumero, 23, anchoNum, 60);
-    jLabel47.setBounds(xTexto, 20, anchoFila - 300, 25);
-    jLabel49.setBounds(xTexto, 45, anchoFila - 300, 22);
-    jLabel40.setBounds(xBloqueo, 25, 160, 30);
-    jButton11.setBounds(xBoton, 20, 160, 50);
+        // Fila 3
+        jPanel4.setBounds(margen, yFila3, anchoFila, altoFila);
+        jLabel32.setBounds(xNumero, 23, anchoNum, 60);
+        jLabel46.setBounds(xTexto, 20, anchoFila - 300, 25);
+        jLabel39.setBounds(xTexto, 45, anchoFila - 300, 22);
+        jLabel18.setBounds(xBloqueo, 25, 160, 30);
+        jButton1.setBounds(xBoton, 20, 160, 50);
 
-    repaint();
-}
-    
+        // Fila 4
+        jPanel15.setBounds(margen, yFila4, anchoFila, altoFila);
+        jLabel38.setBounds(xNumero, 23, anchoNum, 60);
+        jLabel47.setBounds(xTexto, 20, anchoFila - 300, 25);
+        jLabel49.setBounds(xTexto, 45, anchoFila - 300, 22);
+        jLabel40.setBounds(xBloqueo, 25, 160, 30);
+        jButton11.setBounds(xBoton, 20, 160, 50);
+
+        repaint();
+    }
+
     /**
      * @param args the command line arguments
      */

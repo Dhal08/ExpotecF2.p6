@@ -67,6 +67,7 @@ public class Modulo extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,16 +182,16 @@ public class Modulo extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz_expotec/Recursos/estrella-vacia-de-contorno-bruto.png"))); // NOI18N
-        jButton2.setText("Iniciar Prueba Modulo");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setBorderPainted(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setLabel("Iniciar Prueba No2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 560, 290, 50));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 560, 290, 50));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 21)); // NOI18N
         jLabel12.setText("Temas a estudiar");
@@ -235,7 +236,22 @@ public class Modulo extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 560, 290, 50));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, 290, 50));
+
+        jButton4.setBackground(new java.awt.Color(167, 73, 24));
+        jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz_expotec/Recursos/estrella-vacia-de-contorno-bruto.png"))); // NOI18N
+        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton4.setBorderPainted(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton4.setLabel("Iniciar Prueba No1");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 560, 290, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -252,14 +268,20 @@ public class Modulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Prueba prueba = new Prueba();
-        prueba.setVisible(true);
+        PruebaModulos pruebamodulos = new PruebaModulos();
+        pruebamodulos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        PruebaModulos pruebamodulos = new PruebaModulos();
+        pruebamodulos.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void redimensionar() {
         int ancho = getContentPane().getWidth();
@@ -314,11 +336,12 @@ public class Modulo extends javax.swing.JFrame {
 
         // ── Botones ──
         int yBoton = (int) (alto * 0.70);
-        int anchoBtn = (int) (ancho * 0.22);
+        int anchoBtn = (int) (ancho * 0.15);
         int altoBtn = 55;
 
-        jButton3.setBounds(xIzq + 150, yBoton, anchoBtn, altoBtn);
-        jButton2.setBounds(xIzq + anchoBtn + 200, yBoton, anchoBtn, altoBtn);
+        jButton3.setBounds(xIzq + 130, yBoton, anchoBtn, altoBtn);
+        jButton2.setBounds(xIzq + anchoBtn + 170, yBoton, anchoBtn, altoBtn);
+        jButton4.setBounds(xIzq + anchoBtn + 500, yBoton, anchoBtn, altoBtn);
 
         getContentPane().revalidate();
         getContentPane().repaint();
@@ -363,6 +386,7 @@ public class Modulo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
