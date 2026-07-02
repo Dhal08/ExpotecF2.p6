@@ -6,7 +6,7 @@
 package interfaz_expotec;
 
 import Clases.Conexion;
-import interfaz_expotec.Prueba_Vocacional;
+import interfaz_expotec.Prueba;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import interfaz_expotec.CRUD;
@@ -290,7 +290,7 @@ public class CrearCuenta extends javax.swing.JFrame {
 CRUD panelCrud = new CRUD(nombre, email); 
 panelCrud.setVisible(true);
             } else {
-                Prueba_Vocacional pruebaVocacional = new Prueba_Vocacional();
+                Prueba pruebaVocacional = new Prueba();
                 pruebaVocacional.setVisible(true);
             }
             this.dispose();
@@ -300,7 +300,7 @@ panelCrud.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(null, "El código introducido es incorrecto. Validación fallida.", "Código Erróneo", JOptionPane.ERROR_MESSAGE);
     }
-}                                                   
+}                   
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {                                                                                    
         // TODO add your handling code here:

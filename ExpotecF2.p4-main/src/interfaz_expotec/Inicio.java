@@ -81,7 +81,7 @@ public class Inicio extends javax.swing.JFrame {
         jButton1.setText("Continuar");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -187,7 +187,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Prueba_Vocacional pruebaVocacional = new Prueba_Vocacional();
+        Prueba pruebaVocacional = new Prueba();
         pruebaVocacional.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

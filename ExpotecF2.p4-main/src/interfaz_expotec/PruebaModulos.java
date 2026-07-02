@@ -103,42 +103,14 @@ public class PruebaModulos extends javax.swing.JFrame {
             rbtn4
         };
 
-        for (javax.swing.JRadioButton r : radios) {
-
-            r.setBackground(
-                    new java.awt.Color(
-                            244,
-                            239,
-                            245
-                    )
-            );
-
-            r.setFont(
-                    new java.awt.Font(
-                            "Arial",
-                            java.awt.Font.PLAIN,
-                            18
-                    )
-            );
-
             btnAnterior = new javax.swing.JButton("← Anterior");
             btnSiguiente = new javax.swing.JButton("Siguiente →");
 
             btnAnterior.setFont(
-                    new java.awt.Font(
-                            "Arial",
-                            java.awt.Font.BOLD,
-                            14
-                    )
-            );
+                    new Font("Arial", Font.BOLD, 14));
 
             btnSiguiente.setFont(
-                    new java.awt.Font(
-                            "Arial",
-                            java.awt.Font.BOLD,
-                            14
-                    )
-            );
+                    new Font("Arial", Font.BOLD, 14));
 
 // BOTON ANTERIOR
             btnAnterior.addActionListener(e -> {
@@ -186,6 +158,12 @@ public class PruebaModulos extends javax.swing.JFrame {
                             "Ha terminado la prueba"
                     );
 
+                    Resultados resultados = new Resultados();
+
+                    resultados.setVisible(true);
+
+                    this.dispose();
+
                 }
 
             });
@@ -194,6 +172,24 @@ public class PruebaModulos extends javax.swing.JFrame {
 
             jPanel8.add(btnSiguiente);
 
+            for (javax.swing.JRadioButton r : radios) {
+
+            r.setBackground(
+                    new java.awt.Color(
+                            244,
+                            239,
+                            245
+                    )
+            );
+
+            r.setFont(
+                    new java.awt.Font(
+                            "Arial",
+                            java.awt.Font.PLAIN,
+                            18
+                    )
+            );
+            
             grupoRespuestas.add(r);
 
             jPanel8.add(r);
@@ -302,34 +298,34 @@ public class PruebaModulos extends javax.swing.JFrame {
 
         int xPanel = (ancho - anchoPanel) / 2;
         int yPanel = 170;
-        
+
         jPanel8.setBounds(xPanel, yPanel, anchoPanel, altoPanel);
         jPanel8.setLayout(null);
 
         // TITULOS
         jLabel1.setBounds(
                 40,
-                20,
-                180,
+                40,
+                200,
                 50
         );
 
         jLabel3.setBounds(
-                175,
-                20,
+                180,
+                40,
                 400,
                 50
         );
 
         jLabel4.setBounds(
-                30,
+                55,
                 90,
                 jPanel8.getWidth() - 60,
                 30
         );
 
         jLabel6.setBounds(
-                30,
+                40,
                 150,
                 150,
                 30
@@ -346,7 +342,7 @@ public class PruebaModulos extends javax.swing.JFrame {
         // PREGUNTA
         lblPregunta.setBounds(
                 30,
-                270,
+                235,
                 300,
                 40
         );
@@ -354,8 +350,8 @@ public class PruebaModulos extends javax.swing.JFrame {
         if (btnAnterior != null) {
 
             btnAnterior.setBounds(
-                    120,
-                    altoPanel - 75,
+                    130,
+                    altoPanel - 100,
                     150,
                     45
             );
@@ -365,8 +361,8 @@ public class PruebaModulos extends javax.swing.JFrame {
         if (btnSiguiente != null) {
 
             btnSiguiente.setBounds(
-                    anchoPanel - 270,
-                    altoPanel - 75,
+                    anchoPanel - 290,
+                    altoPanel - 100,
                     170,
                     45
             );
@@ -375,10 +371,10 @@ public class PruebaModulos extends javax.swing.JFrame {
 
         int anchoRespuesta = jPanel8.getWidth() - 100;
 
-        rbtn1.setBounds(50, 350, anchoRespuesta, 35);
-        rbtn2.setBounds(50, 410, anchoRespuesta, 35);
-        rbtn3.setBounds(50, 470, anchoRespuesta, 35);
-        rbtn4.setBounds(50, 530, anchoRespuesta, 35);
+        rbtn1.setBounds(50, 300, anchoRespuesta, 35);
+        rbtn2.setBounds(50, 350, anchoRespuesta, 35);
+        rbtn3.setBounds(50, 400, anchoRespuesta, 35);
+        rbtn4.setBounds(50, 450, anchoRespuesta, 35);
 
         repaint();
         revalidate();
