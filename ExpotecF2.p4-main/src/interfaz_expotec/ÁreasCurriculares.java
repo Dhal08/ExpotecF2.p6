@@ -705,20 +705,21 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
         jPanel7.setBounds(0, alto - 70, ancho, 70);
 
         // ── Panel central ──
-        int anchoPan = (int) (ancho * 0.85);
-        int altoPan = (int) (alto * 0.75);
-        int xPan = (ancho - anchoPan) / 2;
-        int yPan = (alto - altoPan) / 2;
-        jPanel8.setBounds(xPan, yPan, anchoPan, altoPan);
+        int anchoPanel = (int) (ancho * 0.70);
+        int altoPanel = (int) (alto * 0.65);
+
+        int xPanel = (ancho - anchoPanel) / 2;
+        int yPanel = 170;
+        jPanel8.setBounds(xPanel, yPanel, anchoPanel, altoPanel);
         jPanel8.setLayout(null);
 
         // ── ComboBox título (centrado) ──
-        int anchoComboTitulo = (int) (anchoPan * 0.42);
-        int xComboTitulo = (anchoPan - anchoComboTitulo) - 480;
-        int anchoTitulo = (int) (anchoPan * 0.60);
+        int anchoComboTitulo = (int) (anchoPanel * 0.42);
+        int xComboTitulo = (anchoPanel - anchoComboTitulo) - 480;
+        int anchoTitulo = (int) (anchoPanel * 0.60);
 
         labelTitulo.setBounds(
-                (anchoPan - anchoTitulo) / 2,
+                (anchoPanel - anchoTitulo) / 2,
                 40,
                 anchoTitulo,
                 50
@@ -728,25 +729,25 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
                 new java.awt.Font(
                         "Arial",
                         java.awt.Font.BOLD,
-                        (int) (anchoPan * 0.025)
+                        (int) (anchoPanel * 0.035)
                 )
         );
 
         // ── comboSubtitulo ──
         if (comboSubtitulo != null) {
-            int anchoSubtitulo = (int) (anchoPan * 0.38);
-            int xSubtitulo = (anchoPan - anchoSubtitulo) / 2;
+            int anchoSubtitulo = (int) (anchoPanel * 0.38);
+            int xSubtitulo = (anchoPanel - anchoSubtitulo) / 2;
             comboSubtitulo.setBounds(xSubtitulo, 100, anchoSubtitulo, 40);
-            comboSubtitulo.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, (int) (anchoPan * 0.016)));
+            comboSubtitulo.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, (int) (anchoPanel * 0.016)));
         }
 
         // ── Columnas de años ──
-        int margenIzq = (int) (anchoPan * 0.03);
-        int anchoColumna = (int) ((anchoPan - margenIzq * 2) / 5.5);
-        int separacion = (int) (anchoPan * 0.020);
-        int yLabel = (int) (altoPan * 0.25);
+        int margenIzq = (int) (anchoPanel * 0.03);
+        int anchoColumna = (int) ((anchoPanel - margenIzq * 2) / 5.5);
+        int separacion = (int) (anchoPanel * 0.020);
+        int yLabel = (int) (altoPanel * 0.25);
         int yCombo = yLabel + 50;
-        int altoCombo = (int) (altoPan * 0.08);
+        int altoCombo = (int) (altoPanel * 0.08);
         int tamFuente = Math.max(10, (int) (anchoColumna * 0.09));
 
         int[] xCols = new int[5];
@@ -795,7 +796,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
                     = (visibles * anchoColumna)
                     + ((visibles - 1) * separacion);
 
-            int inicioX = (anchoPan - anchoTotal) / 2;
+            int inicioX = (anchoPanel - anchoTotal) / 2;
 
             int pos = 0;
 
@@ -846,12 +847,12 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
                     // ───── Botón Iniciar ─────
                     if (btnIniciar != null) {
 
-                        int anchoBoton = (int) (anchoPan * 0.20);
+                        int anchoBoton = (int) (anchoPanel * 0.20);
                         int altoBoton = 50;
 
                         btnIniciar.setBounds(
-                                (anchoPan - anchoBoton) / 2,
-                                (altoPan - altoBoton) / 2 + 300,
+                                (anchoPanel - anchoBoton) / 2,
+                                (altoPanel - altoBoton) / 2 + 200,
                                 anchoBoton,
                                 altoBoton
                         );
@@ -859,7 +860,7 @@ public class ÁreasCurriculares extends javax.swing.JFrame {
                         btnIniciar.setFont(new java.awt.Font(
                                 "Arial",
                                 java.awt.Font.BOLD,
-                                Math.max(16, (int) (anchoPan * 0.018))
+                                Math.max(16, (int) (anchoPanel * 0.018))
                         ));
                     }
 

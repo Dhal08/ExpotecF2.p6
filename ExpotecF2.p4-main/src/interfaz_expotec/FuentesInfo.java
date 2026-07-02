@@ -130,6 +130,7 @@ public class FuentesInfo extends javax.swing.JFrame {
         jLabel1.setText("Material del Módulo - Examen No1");
         jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 28, 594, 36));
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(158, 150, 165));
         jLabel3.setText("Revisa estos recursos antes de la evaluación");
         jPanel8.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 70, 520, -1));
@@ -307,7 +308,7 @@ public class FuentesInfo extends javax.swing.JFrame {
         int altoPanel = (int) (alto * 0.65);
 
         int xPanel = (ancho - anchoPanel) / 2;
-        int yPanel = 140;
+        int yPanel = 170;
 
         jPanel8.setLayout(null);
         jPanel8.setBounds(xPanel, yPanel, anchoPanel, altoPanel);
@@ -406,11 +407,8 @@ public class FuentesInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;

@@ -254,10 +254,10 @@ public class PruebaModulos extends javax.swing.JFrame {
 
     private boolean hayRespuestaSeleccionada() {
 
-    return grupoRespuestas.getSelection() != null;
+        return grupoRespuestas.getSelection() != null;
 
-}
-    
+    }
+
     private void redimensionar() {
 
         int ancho = getContentPane().getWidth();
@@ -297,10 +297,12 @@ public class PruebaModulos extends javax.swing.JFrame {
         );
 
         // PANEL CENTRAL
-        int anchoPanel = (int) (ancho * 0.60);
+        int anchoPanel = (int) (ancho * 0.70);
         int altoPanel = (int) (alto * 0.65);
+
         int xPanel = (ancho - anchoPanel) / 2;
-        int yPanel = (alto - altoPanel) / 2;
+        int yPanel = 170;
+        
         jPanel8.setBounds(xPanel, yPanel, anchoPanel, altoPanel);
         jPanel8.setLayout(null);
 
@@ -472,16 +474,16 @@ public class PruebaModulos extends javax.swing.JFrame {
         jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         jPanel8.setPreferredSize(new java.awt.Dimension(765, 370));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(45, 37, 80));
         jLabel1.setText("Prueba: ");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(45, 37, 80));
         jLabel3.setText("Modulo");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(45, 37, 80));
+        jLabel4.setForeground(new java.awt.Color(158, 150, 165));
         jLabel4.setText("Evaluacion de conceptos clave en ingeniería en Sistemas.");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
